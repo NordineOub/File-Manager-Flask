@@ -1,0 +1,147 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+ <title></title>
+ <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+</head>
+<body>
+<h2>Vehicle info Dashboard</h2>
+<p align="center"><a href=documents ><button class=grey style="height:75px;width:150px">vmd timestamp</button></a></p>
+</body>
+</html> -->
+
+<!--  how to use css in python_ flask-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+<!--  Load CSS in Flask with html-->
+    <!-- <link rel="stylesheet" href='/Static/main.css' /> -->
+    <title>Accueil</title>
+
+    <div class="btn-group" style="width:100%;position : fixed;top:0px;left :0px;">
+      <a method="get" href={{ url_for('main') }}>
+      <button style="width:25%">Accueil</button> </a>
+      <a method="get" href={{ url_for('documents') }}>
+        <button style="width:25%">Documents</button>
+      </a>
+      <a method="get" href={{ url_for('quisommes') }}>
+      <button style="width:25%">Qui Sommes nous ?</button> </a>
+      <a method="get" href={{ url_for('home') }}>
+         <button style="width:25%">Déconnexion</button> </a>
+    </div>
+  </head>
+  <body>
+    <h1>Gestionnaire de Documents en ligne</h1>
+    <p>Voici le Système de Gestion de Données d'AGoRa. <br>
+      Programmation avec du HTML, CSS et Javascript sur Flask Web Framework</p>
+
+  <br>   <br>    
+  <center>
+  <h2>Documents les plus recherchés 👇🏻</h2>
+  <br>    
+  <ol type="1">
+    <li><figure>
+    <img src="https://s2.qwant.com/thumbr/0x380/c/0/c15f86a1a84c2e90c3a8261c57836532323f4d7ca896d3dbeb501a828af399/9781435154476.jpg?u=https%3A%2F%2Fms-newsouthbooks-com-au.s3.amazonaws.com%2FWorkImage%2FWorkEdition%2F9781435154476.jpg&q=0&b=1&p=0&a=0"
+         alt="Shakespeare">
+    <figcaption>Shakespeare - The Complete Work</figcaption>
+</figure>
+</li>
+<br>    
+<li>
+<figure>
+  <img src="https://s1.qwant.com/thumbr/0x380/a/e/b8b8cc87b91c2cf3492a16b2368e848c15dc66a4c4a2a7794ce9ebddd737cc/1588499867.jpg?u=https%3A%2F%2Fimgv2-2-f.scribdassets.com%2Fimg%2Fword_document%2F443162065%2Foriginal%2Fe31b93c961%2F1588499867%3Fv%3D1&q=0&b=1&p=0&a=0"
+       alt="Einstein">
+  <figcaption>Einstein - The Book</figcaption>
+</figure>
+</li>
+<li>
+<figure>
+  <img src="https://s2.qwant.com/thumbr/0x380/6/2/161305ba9d1af24fc8db2ea0b227dc7cb4cde7d2fbb87ac2bed3de395ea283/into-the-water-a-novel-paula-hawkins.jpg?u=https%3A%2F%2Falycatgeekery.files.wordpress.com%2F2017%2F05%2Finto-the-water-a-novel-paula-hawkins.jpg%3Fw%3D663&q=0&b=1&p=0&a=0"
+       alt="Paul-Hawkins">
+  <figcaption>Paula Hawkins - Into the Water</figcaption>
+</figure>
+</li>
+
+</tr>
+
+
+
+</center>
+  </body>
+  
+  <style>
+    input[type='submit'], button, [aria-label]{
+      cursor: pointer;
+    }
+    #spoiler{
+      display: none;
+    }
+
+
+    body {
+    background: Linen;
+    margin-top: 50px;
+    margin-left: 100px;
+    }
+   
+  h1 {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 2.5em;
+    color: FireBrick;
+    }
+    
+  h2 {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 1.5em;
+    color: FireBrick;
+    }
+  p {
+    font-family: Georgia, serif;
+    font-size: 1.2em;
+    color: DarkSlateGray;
+    }
+
+.btn-group button {
+    background-color: firebrick; 
+    border: 1px solid black; 
+    color: white; 
+    padding: 10px 24px;
+    cursor: pointer; 
+    float:left;
+   font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+
+  }
+  
+  .btn-group button:not(:last-child) {
+    border-right: none; 
+  }
+  
+  .btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  .btn-group button:hover {
+    background-color: red;
+  }
+
+  tr, td {
+    border: 1px solid black;
+  }
+  .submit {
+    background-color: firebrick;
+    border: 1px solid black;
+    color: white;
+    padding: 10px 24px; 
+    cursor: pointer; 
+    float: left; 
+    cursor: pointer;
+   font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  </style>
+</html>

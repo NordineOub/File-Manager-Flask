@@ -1,0 +1,64 @@
+body {
+    background: Linen;
+    margin-top: 50px;
+    margin-left: 100px;
+    }
+   
+  h1 {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 2.5em;
+    color: FireBrick;
+    }
+    
+  h2 {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 1.5em;
+    color: FireBrick;
+    }
+  p {
+    font-family: Georgia, serif;
+    font-size: 1.2em;
+    color: DarkSlateGray;
+    }
+
+.btn-group button {
+    background-color: firebrick; 
+    border: 1px solid black; 
+    color: white; 
+    padding: 10px 24px;
+    cursor: pointer; 
+   font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+
+  }
+  
+  .btn-group button:not(:last-child) {
+    border-right: none; 
+  }
+  
+  .btn-group:after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  .btn-group button:hover {
+    background-color: red;
+  }
+
+  tr, td {
+    border: 1px solid black;
+  }
+  .submit {
+    background-color: firebrick;
+    border: 1px solid black;
+    color: white;
+    padding: 10px 24px; 
+    cursor: pointer; 
+    float: left; 
+    cursor: pointer;
+   font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+
+
+  }

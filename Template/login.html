@@ -1,0 +1,130 @@
+<!--  how to use css in python_ flask-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--  Load CSS in Flask with html-->
+    <link rel="stylesheet" href='/Static/main.css' />
+    <title>Connexion</title>
+
+
+  </head>
+  <body>
+    <div class="backgroundImage"> </div>
+
+    <div class = "auth">
+   <center> <h1>Veuillez vous connecter </h1>
+   <form class="w3-container" method="POST">
+
+    <label class="label">Identifiant</label>
+    <input  class="w3-input" type="username" id="username" /><br><br>
+    <label class="label">Mot de passe</label>
+    <input  class="w3-input" type="mdp" id="mdp"/><br><br>
+    <input type = "button" onclick="myFunction()" value = "Se connecter"/>
+    <input type = "button" onclick="mdpoublie()" value = "Mot de passe oublié"/>
+
+</form>
+</center>
+</div>
+
+  </body>
+
+<!--  Load JavaScript in Flask with html-->
+  <script>
+    function myFunction()
+    {
+
+    if(document.getElementById("username").value== "root"&& document.getElementById("mdp").value=="root" )
+    {
+        alert("Bienvenue dans notre gestionnaire de documents !")
+        window.open("{{ url_for('main') }}")
+        window.close()
+
+    }
+    else{
+        alert("Mauvais code ! Réessayez")
+    }
+  }
+    function mdpoublie() {
+        alert("Veuillez contacter mdpoublié@sgd-efrei.com avec vos identifiants pour recevoir votre mot de passe")
+        window.location.reload(false)
+    }
+
+  </script>
+<style>
+  h1{
+    text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+
+  }
+    input[type=button] {
+            background-color: FireBrick;
+            border: none;
+            text-decoration: none;
+            color: white;
+            padding: 10px 10px;
+            margin: 10px 10px;
+            cursor: pointer;
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+
+         }
+    input[type=username] {
+            background-color: white;
+            border: black;
+            text-decoration: none;
+            color: black;
+            border-style: outset;
+            padding: 10px 10px;
+            margin: 10px 10px;
+         }
+    input[type=mdp] {
+            background-color: white;
+            border: black;
+            text-decoration: none;
+            border-style: outset;
+            color: black;
+            padding: 10px 10px;
+            margin: 10px 10px;
+         }
+
+         .label {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  color: aliceblue;
+}
+
+
+
+.backgroundImage {
+   background-image: url("https://s1.qwant.com/thumbr/0x380/b/5/7ee67e46fa4c173d1d995adc094a7f6992db485e564f4019faea63f9e2d0f8/VLDVYQU.jpg?u=http%3A%2F%2Fwallpapercave.com%2Fwp%2FVLDVYQU.jpg&q=0&b=1&p=0&a=0");
+   filter: blur(5px);
+        -webkit-filter: blur(5px);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        z-index: -1;
+}
+
+* {
+   box-sizing: border-box;}
+
+
+   .auth{
+   	    width: 70%;
+   	    position: absolute;
+   	    left: 50%;
+   	    top: 50%;
+   	    transform: translate(-50%, -50%);
+   	    text-align: center;
+   	    background: rgba(0,0,0,0.3);
+   	    border: 4px solid white;
+   	    padding: 10px;
+        color: firebrick
+   	}
+</style>
+</html>
+<!-- href={{ url_for('main') }} && document.getElementById("mdp").value =="root"-->

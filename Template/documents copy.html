@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Liste de Documents</title>
+  <style>
+    input[type='submit'], button, [aria-label]{
+      cursor: pointer;
+    }
+    #spoiler{
+      display: none;
+    }
+  </style>
+     <link rel="stylesheet" href='/Static/main.css' />
+
+     <div class="btn-group" style="width:100%">
+         <a method="get" href={{ url_for('main') }}>
+         <button style="width:25%">Accueil</button> </a>
+         <a method="get" href={{ url_for('documents') }}>
+           <button style="width:25%">Documents</button>
+         </a>
+         <a method="get" href={{ url_for('quisommes') }}>
+         <button style="width:25%">Qui Sommes nous ?</button> </a>
+         <a method="get" href={{ url_for('home') }}>
+            <button style="width:25%">Déconnexion</button> </a>
+       </div>
+</head>
+<body>
+<br><br>
+
+
+
+
+<label class="label">Chercher un document </label>
+<input id="searchbar" onkeyup="search_text()" type="text"
+        name="search" placeholder="Entrer un titre">
+
+
+<div id="spoiler" role="aria-hidden">
+  <form action="javascript:void(0);" method="POST" id="saveEdit">
+    <input type="text" id="edit-name">
+    <input type="text" id="edit-desc">
+    <select name="document" id="edit-type">
+      <option value="roman">Roman</option>
+      <option value="science">Science</option>
+      <option value="facture">Facture</option>
+    </select>
+    <input type="submit" value="Modifier" onclick="CloseInput()" aria-label="Close">
+  </form>
+</div>
+
+<p id="counter"></p>
+
+<table>
+  <tr>
+    <th>Document</th>
+  </tr>
+    <tbody id="documents">
+    </tbody>
+</table>
+<br><br>
+
+<form action="javascript:void(0);" method="POST" onsubmit="app.Add()"> 
+    <input type="text" id="add-name" placeholder="Ajouter un document">
+    <input type="text" id="add-desc" placeholder="Description du document">
+    <select name="document" id="add-type" class="custom-select" style="width:200px;">
+      <option value="roman">Roman</option>
+      <option value="science">Science</option>
+      <option value="facture">Facture</option>
+    </select>
+    <input type="submit" value="Ajouter">
+  </form>
+  <br>
+
+<script>
+var app = new function() {
+
+  this.el = document.getElementById('documents');
+
+  this.documents = ['Shakespeare', 'Einstein', 'Facture du 12 Juin 2020'];
+  this.description = ['Un classique littéraire anglais', "Livre d'un grand scientifique", "Mes soucis quotidiens"]
+  this.type = ['Roman', "Science", "Facture"]
+
+  this.Count = function(data) {
+    var el   = document.getElementById('counter');
+    var name = 'document disponible';
+
+    if (data) {
+      if (data > 1) {
+        name = 'documents disponibles';
+      }
+      el.innerHTML = 'Il y a ' +data + ' ' + name ;
+    } else {
+      el.innerHTML = 'Pas de ' + name;
+    }
+  };
+  
+  this.FetchAll = function() {
+    var data = '';
+
+    if (this.documents.length > 0) {
+      for (i = 0; i < this.documents.length; i++) {
+        data += '<tr class = "listItem">';
+        data += '<td >' + this.documents[i] + '</td>';
+        data += '<td >' + this.description[i] + '</td>';
+        data += '<td >' + this.type[i] + '</td>';
+        data += '<td ><button type ="submit" onclick="app.Edit(' + i + ')">Modifier</button></td>';
+        data += '<td ><button type ="submit" onclick="app.Delete(' + i + ')">Supprimer</button></td>';
+        data += '</tr>';
+      }
+    }
+
+    this.Count(this.documents.length);
+    return this.el.innerHTML = data;
+  };
+
+  this.Add = function () {
+    el = document.getElementById('add-name');
+    desc = document.getElementById('add-desc').value;
+    typ = document.getElementById('add-type').value;
+
+    // Get the value
+    var country = el.value;
+
+    if (country && desc && typ) {
+      // Add the new value
+      this.documents.push(country.trim());
+      this.description.push(desc.trim());
+      this.type.push(typ.trim());
+
+      // Reset input value
+      el.value = '';
+      desc.value = '';
+      // Dislay the new list
+      this.FetchAll();
+    }
+  };
+
+  this.Edit = function (item) {
+    var el = document.getElementById('edit-name');
+    var desc = document.getElementById('edit-desc');
+    var typ = document.getElementById('edit-type');
+
+    // Display value in the field
+    el.value = this.documents[item];
+    desc.value =this.description[item];
+    typ.value = this.type[item];
+    // Display fields
+    document.getElementById('spoiler').style.display = 'block';
+    self = this;
+
+    document.getElementById('saveEdit').onsubmit = function() {
+      // Get value
+      var country = el.value;
+      var description = desc.value;
+      var type = typ.value;
+      if (country || description) {
+        // Edit value
+        self.documents.splice(item, 1, country.trim());
+        self.description.splice(item, 1, description.trim());
+        self.type.splice(item, 1, type.trim());
+
+        // Display the new list
+        self.FetchAll();
+        // Hide fields
+        CloseInput();
+      }
+    }
+  };
+
+  this.Delete = function (item) {
+    // Delete the current row
+    this.documents.splice(item, 1);
+    // Display the new list
+    this.FetchAll();
+  };
+
+}
+
+app.FetchAll();
+
+function CloseInput() {
+  document.getElementById('spoiler').style.display = 'none';
+
+}
+
+
+function search_text() {
+    let input = document.getElementById('listdocument').value
+    input=input.toLowerCase();
+    let x = document.getElementsByClassName('listItem');
+      
+    for (i = 0; i < x.length; i++) { 
+        if (!x[i].innerHTML.toLowerCase().includes(input)) {
+            x[i].style.display="none";
+        }
+        else {
+            x[i].style.display="list-item";                 
+        }
+    }
+}
+
+function search_text() {
+    let input = document.getElementById('searchbar').value
+    input=input.toLowerCase();
+    let x = document.getElementsByClassName('listItem');
+      
+    for (i = 0; i < x.length; i++) { 
+        if (!x[i].innerHTML.toLowerCase().includes(input)) {
+            x[i].style.display="none";
+        }
+        else {
+            x[i].style.display="list-item";                 
+        }
+    }
+}
+</script>
+</body>
+
+<style>
+
+input[type=submit] {
+            background-color: FireBrick;
+            border: none;
+            text-decoration: none;
+            color: white;
+            padding: 8px 6px;
+            margin: 10px 10px;
+            cursor: pointer;
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+
+         }
+    input[type=text] {
+            background-color: white;
+            border: black;
+            text-decoration: none;
+            color: black;
+            border-style: outset;
+            padding: 10px 10px;
+            margin: 10px 10px;
+         }
+         body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+
+.label {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+
+.custom-select {
+  position: relative;
+  font-family: Arial;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+  background-color: DodgerBlue;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+}
+
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: DodgerBlue;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+</style>
+</html>
