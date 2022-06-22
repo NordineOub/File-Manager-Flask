@@ -68,7 +68,7 @@
 
 <table>
   <tr>
-    <th>Document</th>
+    <th>Documents</th>
 
   </tr>
     <tbody id="documents">
@@ -119,7 +119,7 @@ var app = new function() {
 
   this.el = document.getElementById('documents');
 
-  this.documents = ['Shakespeare', 'Einstein', 'Facture du 12 Juin 2020'];
+  this.documents = ['Shakespeare -  The Complete Work', 'Einstein - The Book', 'Facture du 12 Juin 2020'];
   this.description = ['Un classique littéraire anglais', "Albert Einstein was an intelligent man who discovered groundbreaking theories. He was a german who changed the world of physics. He created the theory of relativity. He’s done so much for physicists and the world. His death was nearly a centennial, yet he’s still one of the most notable, if not the most notable, physicist to this day. He has done amazing work, but people just see him as the crazy smart physicist with wacky hair. Where did he grow up? What was his life like? What did he do to achieve his success?", "Mes soucis quotidiens"]
   this.type = ['Roman', "Science", "Facture"]
 
@@ -149,7 +149,7 @@ var app = new function() {
         data += '<td ><button type ="submit" class = "submit" onclick="app.Edit(' + i + ')">Modifier</button></td>';
         data += '<td ><button type ="submit" class = "submit" onclick="app.Delete(' + i + ')">Supprimer</button></td>';
         data += '</tr>';
-        data += '<br>'
+        // data += '<br>'
 
 
       }
